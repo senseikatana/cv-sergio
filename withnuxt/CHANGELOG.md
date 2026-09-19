@@ -1,5 +1,28 @@
 # Changelog
 
+## v2.0.0 — CV-only en /resume
+
+### Changed
+
+- El proyecto pasa a ser **solo el CV**: se eliminan blog, tienda, carrito, Stripe, Prisma,
+  Nuxt Content y `@nuxtjs/i18n`
+- El CV se mueve a `/resume/{es|ca|en}/` (el idioma va en la ruta); `/resume` redirige a
+  `/resume/es/` y la raíz del dominio ya no sirve el CV
+- Nueva fuente única `data/resume.ts` (ES/CA/EN) con experiencia, formación, skills,
+  idiomas, perfiles reales y servicios
+- Rediseño completo: header sticky, hero, pestañas con scroll-spy, timeline, cards,
+  grid de perfiles, CTA, print styles y reveal on scroll
+- Fuentes self-hosted (Inter Variable + JetBrains Mono Variable)
+- Assets de build bajo `/resume/_nuxt/` y públicos bajo `public/resume/`
+- Salida estática (`nuxt generate`) + `wrangler.jsonc` con la ruta
+  `senseikatana.com/resume/*`
+
+### Removed
+
+- `app/pages/{index,about,contact}.vue`, `app/pages/blog/**`, `app/pages/store/**`,
+  `app/stores/cart.ts`, `server/api/**`, `scripts/seed-stripe.ts`, `prisma/**`,
+  `content/**`, `i18n/**`, `data/products.ts` y el test de productos
+
 ## v4.0.0 — External Products, Secure Checkout & Webhook
 
 ### Added

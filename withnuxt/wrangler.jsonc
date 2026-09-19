@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cv-sergio-nuxt",
+  "compatibility_date": "2025-09-02",
+  "assets": {
+    "directory": ".output/public"
+  },
+  "routes": [
+    {
+      "pattern": "senseikatana.com/resume/*",
+      "zone_name": "senseikatana.com"
+    }
+  ]
+}

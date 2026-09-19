@@ -10,7 +10,9 @@ const globals = {
   reactive: 'readonly',
   watch: 'readonly',
   watchEffect: 'readonly',
+  nextTick: 'readonly',
   onMounted: 'readonly',
+  onBeforeUnmount: 'readonly',
   // Nuxt
   useRoute: 'readonly',
   useRouter: 'readonly',
@@ -20,25 +22,20 @@ const globals = {
   useSeoMeta: 'readonly',
   useHead: 'readonly',
   createError: 'readonly',
-  queryCollection: 'readonly',
   navigateTo: 'readonly',
-  // i18n
-  useI18n: 'readonly',
-  useSwitchLocalePath: 'readonly',
-  useLocalePath: 'readonly',
-  useLocaleHead: 'readonly',
+  definePageMeta: 'readonly',
   // color mode
   useColorMode: 'readonly',
+  // Composables propios
+  useLang: 'readonly',
+  resumePath: 'readonly',
+  useResumeSeo: 'readonly',
+  useRevealObserver: 'readonly',
   // Nuxt UI
   useToast: 'readonly',
   $fetch: 'readonly',
   defineNuxtConfig: 'readonly',
   defineAppConfig: 'readonly',
-  defineEventHandler: 'readonly',
-  defineContentConfig: 'readonly',
-  readBody: 'readonly',
-  readRawBody: 'readonly',
-  getHeader: 'readonly',
   // Runtime
   process: 'readonly',
   console: 'readonly',
@@ -49,6 +46,9 @@ const globals = {
   document: 'readonly',
   window: 'readonly',
   navigator: 'readonly',
+  localStorage: 'readonly',
+  IntersectionObserver: 'readonly',
+  HTMLElement: 'readonly',
 }
 
 export default tseslint.config(

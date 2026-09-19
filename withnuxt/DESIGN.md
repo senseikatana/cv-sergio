@@ -40,16 +40,15 @@ Utilities: `bg-rose-400`, `text-dark-800`, `border-teal-200`, `bg-sky-100`, etc.
 
 ## Design Decisions
 
-- Dark mode by default (`dark-800` as base)
-- Minimalist, clean layout
-- Cards with subtle borders
-- `white-200` for body text on dark backgrounds
-- `rose-400` as primary accent
-- `sky` for info states (distinct from `teal` secondary)
-- `emerald` for success (distinct from `teal`)
-- Hero with profile image on the right
-- Tags/hashtags in monospace font
-- CTA banner at top of homepage
+- Dark mode by default (`colorMode.preference: 'dark'`)
+- Minimalist, clean layout; superficies con bordes sutiles
+- El CV vive en `/resume/{lang}/` con pestañas sticky y scroll-spy (01 Perfil · 02 Experiencia ·
+  03 Formación · 04 Skills · 05 Disponibilidad)
+- Hero con foto a la derecha, chips de contacto y descarga de PDF
+- Timeline para experiencia, grid de cards para formación, grid de perfiles
+- `rose` como acento primario, `sky` para info y `teal` como secundario
+- Etiquetas de fechas y numeración en tipografía monoespaciada (JetBrains Mono)
+- Reveal on scroll y print styles (A4) para exportar el CV
 
 ## Pending
 

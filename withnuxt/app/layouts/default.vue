@@ -1,80 +1,54 @@
 <script setup lang="ts">
-import { site } from '~~/data/site'
+import { meta } from '~~/data/resume'
 
-const { t } = useI18n()
-const localePath = useLocalePath()
+const { t, htmlLang } = useLang()
 
-const navigation = computed(() => [
-  { label: t('nav.home'), to: localePath('/') },
-  { label: t('nav.about'), to: localePath('/about') },
-  { label: t('nav.blog'), to: localePath('/blog') },
-  { label: t('nav.store'), to: localePath('/store') },
-  { label: t('nav.contact'), to: localePath('/contact') },
-])
+useRevealObserver()
 
-const socials = [
-  { icon: 'i-simple-icons-linkedin', to: site.linkedin, label: 'LinkedIn' },
-]
+useHead({
+  htmlAttrs: { lang: htmlLang },
+})
+
+useSeoMeta({
+  description: () => t.value.seoDescription,
+  ogType: 'profile',
+  ogSiteName: 'senseikatana.com',
+  ogImage: `${meta.siteUrl}/resume/cv/sergio-jurado.jpg`,
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: meta.name,
+        email: meta.email,
+        telephone: meta.phone,
+        url: `${meta.siteUrl}/resume/es/`,
+        image: `${meta.siteUrl}/resume/cv/sergio-jurado.jpg`,
+        sameAs: [meta.linkedin, meta.github],
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Cambrils',
+          addressRegion: 'Tarragona',
+          addressCountry: 'ES',
+        },
+      }),
+    },
+  ],
+})
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
-    <UHeader>
-      <template #title>
-        <NuxtLink :to="localePath('/')" class="font-bold text-xl tracking-tight">
-          SJ
-        </NuxtLink>
-      </template>
-
-      <UNavigationMenu :items="navigation" />
-
-      <template #right>
-        <ThemeSwitcher />
-        <LangSwitcher />
-        <UButton
-          v-for="s in socials"
-          :key="s.icon"
-          :icon="s.icon"
-          color="neutral"
-          variant="ghost"
-          :to="s.to"
-          target="_blank"
-          rel="noopener noreferrer"
-          :aria-label="s.label"
-        />
-      </template>
-
-      <template #body>
-        <UNavigationMenu :items="navigation" orientation="vertical" />
-      </template>
-    </UHeader>
-
-    <UMain>
+  <div class="flex min-h-screen flex-col">
+    <a href="#main" class="skip-link">{{ t.skipToContent }}</a>
+    <AppHeader />
+    <main id="main" class="flex-1">
       <slot />
-    </UMain>
-
-    <UFooter>
-      <template #left>
-        <span class="text-sm text-white-500">
-          &copy; {{ new Date().getFullYear() }} {{ site.name }}
-        </span>
-      </template>
-
-      <template #right>
-        <div class="flex gap-2">
-          <UButton
-            v-for="s in socials"
-            :key="s.icon"
-            :icon="s.icon"
-            color="neutral"
-            variant="ghost"
-            :to="s.to"
-            target="_blank"
-            rel="noopener noreferrer"
-            :aria-label="s.label"
-          />
-        </div>
-      </template>
-    </UFooter>
+    </main>
+    <AppFooter />
   </div>
 </template>
