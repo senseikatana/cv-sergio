@@ -1,0 +1,62 @@
+{
+  "$comment": "Boceto de proyectos extraído de los perfiles antiguos (exports de prompts ya eliminados, recuperables en el historial de git). NO está publicado en el CV actual: son referencias para una futura sección de proyectos.",
+  "draft": true,
+  "profiles": {
+    "logistica": [
+      {
+        "title": "Novatecnica SGA",
+        "description": "Sistema de gestión de almacén (WMS) en tiempo real: control de inventario multiubicación, picking por olas, recepción, conteo cíclico y dashboards de KPIs.",
+        "url": "https://github.com/senseikatana/sga-vilaseca"
+      },
+      {
+        "title": "Warehouse Manager",
+        "description": "Aplicación de gestión de almacén con backend y frontend: seguimiento de stock, tareas de operario y trazabilidad de movimientos entre zonas.",
+        "url": "https://github.com/senseikatana"
+      },
+      {
+        "title": "Snippets y utilidades de sistema",
+        "description": "Colección de scripts de utilidades (discos, red/VPN, rescate SSH) útiles para la operativa diaria y el mantenimiento de equipos.",
+        "url": "https://github.com/senseikatana"
+      }
+    ],
+    "fullstack": [
+      {
+        "title": "Novatecnica WMS",
+        "description": "WMS Fullstack con React, TypeScript, Hono y Bun. Control de inventario en tiempo real, picking por olas, escaneo de códigos de barras y dashboard de métricas.",
+        "url": "https://github.com/senseikatana/sga-vilaseca"
+      },
+      {
+        "title": "Treslunas Boutique",
+        "description": "Tienda online construida con Astro y base de datos integrada. Catálogo, diseño cuidado y enfoque en rendimiento.",
+        "url": "https://github.com/senseikatana"
+      },
+      {
+        "title": "Digital Bank App",
+        "description": "Interfaz de app bancaria digital con HTML y CSS, enfocada en UI limpia y experiencia clara.",
+        "url": "https://github.com/senseikatana"
+      },
+      {
+        "title": "Coffeeshop",
+        "description": "Web app de cafetería con TypeScript y Vite. Interfaz moderna y componentes reutilizables.",
+        "url": "https://github.com/senseikatana"
+      }
+    ],
+    "generico": [
+      {
+        "title": "Portfolio Personal",
+        "description": "Monorepo con mi portfolio y múltiples proyectos web: tiendas, apps y plantillas. Construido con Astro y TypeScript.",
+        "url": "https://github.com/senseikatana"
+      },
+      {
+        "title": "Recetas Naturales",
+        "description": "Colección de recetas caseras y productos naturales documentadas paso a paso. Proyecto personal de organización de conocimiento.",
+        "url": "https://github.com/senseikatana"
+      },
+      {
+        "title": "Num Perfumes",
+        "description": "Proyecto web de catálogo de perfumes con Astro, enfocado en presentación cuidada de producto.",
+        "url": "https://github.com/senseikatana"
+      }
+    ]
+  }
+}

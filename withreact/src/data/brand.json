@@ -1,0 +1,54 @@
+{
+  "$comment": "Paleta de marca Senseikatana. v1/v2 extraídas de los PDFs de marca (ya eliminados, recuperables en el historial de git); v3 es la vigente y la que usan los tres stacks del CV.",
+  "name": "Senseikatana Brand Palette",
+  "current": "v3.0.0",
+  "versions": {
+    "v1.0.0": {
+      "source": "Senseikatana Paleta Brand Colors - v1.0.0.pdf",
+      "colors": {
+        "yellow": "#F2CD60",
+        "rose": "#FF729F",
+        "dark": "#11151C",
+        "blue": "#0093B8",
+        "lavender": "#8C86AA"
+      }
+    },
+    "v2.0.0": {
+      "source": "Senseikatana Brand Palette - v2.0.0.pdf",
+      "colors": {
+        "yellow": "#F6DC8E",
+        "rose": "#FF5C8F",
+        "dark": "#11151C",
+        "sky": "#6DB3C5",
+        "teal": "#38686B"
+      }
+    },
+    "v3.0.0": {
+      "usage": "CV digital en senseikatana.com/resume (Astro, Nuxt y React)",
+      "format": "OKLCH (Tailwind CSS v4 / CSS custom properties)",
+      "colors": {
+        "rose": { "role": "primary + error", "hex": "#F43F5E", "oklch": "oklch(0.63 0.23 17)" },
+        "teal": { "role": "secondary", "hex": "#38686B", "oklch": "oklch(0.45 0.06 185)" },
+        "emerald": { "role": "success", "hex": "#10B981", "oklch": "oklch(0.72 0.19 162)" },
+        "yellow": { "role": "warning", "hex": "#F6DC8E", "oklch": "oklch(0.90 0.12 85)" },
+        "sky": { "role": "info", "hex": "#25ABE4", "oklch": "oklch(0.72 0.12 225)" },
+        "dark": { "role": "neutral / superficies", "hex": "#11151C", "oklch": "oklch(0.15 0.02 260)" },
+        "white": { "role": "tinta sobre dark", "hex": "#E4E4E7", "oklch": "oklch(0.93 0.005 260)" },
+        "lavender": { "role": "decorativo", "hex": "#8C86AA", "oklch": "oklch(0.58 0.05 270)" }
+      },
+      "roles": {
+        "primary": "rose",
+        "secondary": "teal",
+        "success": "emerald",
+        "warning": "yellow",
+        "error": "rose",
+        "info": "sky",
+        "neutral": "dark"
+      },
+      "typography": {
+        "sans": "Inter Variable",
+        "mono": "JetBrains Mono Variable"
+      }
+    }
+  }
+}
