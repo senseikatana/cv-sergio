@@ -1,8 +1,8 @@
 import { meta } from "../data/resume";
-import { useLangSafe } from "../lib/lang";
+import { useLang } from "../lib/lang";
 
 export default function Footer() {
-	const { t } = useLangSafe();
+	const { t } = useLang();
 	const year = new Date().getFullYear();
 
 	return (

@@ -1,13 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Github } from "lucide-react";
 import { meta } from "../data/resume";
-import { resumePath, useLangSafe } from "../lib/lang";
+import { resumePath, useLang } from "../lib/lang";
 import LangSwitcher from "./LangSwitcher";
 import ResumeAssistantButton from "./ResumeAssistantButton";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-	const { lang, t } = useLangSafe();
+	const { lang, t } = useLang();
 	const pathname = useRouterState({
 		select: (state) => state.location.pathname,
 	});

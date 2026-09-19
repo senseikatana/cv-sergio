@@ -26,7 +26,7 @@ import {
 	resume,
 	sections,
 } from "../../../data/resume";
-import { useLangSafe } from "../../../lib/lang";
+import { useLang } from "../../../lib/lang";
 import { useRevealObserver } from "../../../lib/reveal";
 import { resumeHead } from "../../../lib/seo";
 
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/resume/$lang/")({
 });
 
 function ResumePage() {
-	const { lang, t, r } = useLangSafe();
+	const { lang, t, r } = useLang();
 	const tabs = sections[lang];
 	const [active, setActive] = useState("perfil");
 

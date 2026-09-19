@@ -15,11 +15,11 @@ como extra propio de este stack.
 
 ```
 src/
-├── data/resume.ts                 ← fuente única: CV, perfiles, servicios y UI (ES/CA/EN)
 ├── components/
 │   ├── Header.tsx · Footer.tsx
 │   ├── LangSwitcher.tsx · ThemeToggle.tsx
 │   └── ResumeAssistant.tsx · ResumeAssistantButton.tsx
+├── data/resume.ts                 ← fuente única: CV, perfiles, servicios y UI (ES/CA/EN)
 ├── lib/
 │   ├── lang.ts · seo.ts · reveal.ts
 │   ├── resume-ai-hook.ts          ← cliente del asistente
@@ -31,13 +31,12 @@ src/
 │       ├── api/resume-chat.ts     ← endpoint SSE del asistente
 │       └── $lang/
 │           ├── index.tsx          ← CV con pestañas + perfiles + CTA
-│           ├── services.tsx · contact.tsx
-│           ├── $profile.tsx       ← logistica | fullstack | generico
-│           └── about.tsx · shop.tsx → redirigen al CV
+│           └── $page.tsx          ← services, contact, perfiles (about/shop redirigen)
 └── styles.css                     ← tokens, reveal y print
 public/resume/
 ├── cv/sergio-jurado.{jpg,pdf}
 └── favicon.svg
+tests/resume.test.ts               ← mismo test que Astro y Nuxt (11 checks de datos)
 ```
 
 Los assets de build se generan bajo `/resume/assets/` (`build.assetsDir` en `vite.config.ts`).

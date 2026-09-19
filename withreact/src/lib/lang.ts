@@ -5,7 +5,7 @@ export function normalizeLang(value: unknown): Lang {
 	return value === "ca" || value === "en" ? value : "es";
 }
 
-export function useLangSafe() {
+export function useLang() {
 	const params = useParams({ strict: false }) as { lang?: string };
 	const lang = normalizeLang(params.lang);
 

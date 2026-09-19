@@ -11,11 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResumeIndexRouteImport } from './routes/resume/index'
 import { Route as ResumeLangIndexRouteImport } from './routes/resume/$lang/index'
-import { Route as ResumeLangProfileRouteImport } from './routes/resume/$lang/$profile'
-import { Route as ResumeLangAboutRouteImport } from './routes/resume/$lang/about'
-import { Route as ResumeLangContactRouteImport } from './routes/resume/$lang/contact'
-import { Route as ResumeLangServicesRouteImport } from './routes/resume/$lang/services'
-import { Route as ResumeLangShopRouteImport } from './routes/resume/$lang/shop'
+import { Route as ResumeLangPageRouteImport } from './routes/resume/$lang/$page'
 import { Route as ResumeApiResumeChatRouteImport } from './routes/resume/api/resume-chat'
 
 const ResumeIndexRoute = ResumeIndexRouteImport.update({
@@ -28,29 +24,9 @@ const ResumeLangIndexRoute = ResumeLangIndexRouteImport.update({
   path: '/resume/$lang/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResumeLangProfileRoute = ResumeLangProfileRouteImport.update({
-  id: '/resume/$lang/$profile',
-  path: '/resume/$lang/$profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResumeLangAboutRoute = ResumeLangAboutRouteImport.update({
-  id: '/resume/$lang/about',
-  path: '/resume/$lang/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResumeLangContactRoute = ResumeLangContactRouteImport.update({
-  id: '/resume/$lang/contact',
-  path: '/resume/$lang/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResumeLangServicesRoute = ResumeLangServicesRouteImport.update({
-  id: '/resume/$lang/services',
-  path: '/resume/$lang/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResumeLangShopRoute = ResumeLangShopRouteImport.update({
-  id: '/resume/$lang/shop',
-  path: '/resume/$lang/shop',
+const ResumeLangPageRoute = ResumeLangPageRouteImport.update({
+  id: '/resume/$lang/$page',
+  path: '/resume/$lang/$page',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeApiResumeChatRoute = ResumeApiResumeChatRouteImport.update({
@@ -61,32 +37,20 @@ const ResumeApiResumeChatRoute = ResumeApiResumeChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/resume/': typeof ResumeIndexRoute
-  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
-  '/resume/$lang/about': typeof ResumeLangAboutRoute
-  '/resume/$lang/contact': typeof ResumeLangContactRoute
-  '/resume/$lang/services': typeof ResumeLangServicesRoute
-  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/$lang/$page': typeof ResumeLangPageRoute
   '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
   '/resume/$lang/': typeof ResumeLangIndexRoute
 }
 export interface FileRoutesByTo {
   '/resume': typeof ResumeIndexRoute
-  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
-  '/resume/$lang/about': typeof ResumeLangAboutRoute
-  '/resume/$lang/contact': typeof ResumeLangContactRoute
-  '/resume/$lang/services': typeof ResumeLangServicesRoute
-  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/$lang/$page': typeof ResumeLangPageRoute
   '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
   '/resume/$lang': typeof ResumeLangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/resume/': typeof ResumeIndexRoute
-  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
-  '/resume/$lang/about': typeof ResumeLangAboutRoute
-  '/resume/$lang/contact': typeof ResumeLangContactRoute
-  '/resume/$lang/services': typeof ResumeLangServicesRoute
-  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/$lang/$page': typeof ResumeLangPageRoute
   '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
   '/resume/$lang/': typeof ResumeLangIndexRoute
 }
@@ -94,42 +58,26 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/resume/'
-    | '/resume/$lang/$profile'
-    | '/resume/$lang/about'
-    | '/resume/$lang/contact'
-    | '/resume/$lang/services'
-    | '/resume/$lang/shop'
+    | '/resume/$lang/$page'
     | '/resume/api/resume-chat'
     | '/resume/$lang/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/resume'
-    | '/resume/$lang/$profile'
-    | '/resume/$lang/about'
-    | '/resume/$lang/contact'
-    | '/resume/$lang/services'
-    | '/resume/$lang/shop'
+    | '/resume/$lang/$page'
     | '/resume/api/resume-chat'
     | '/resume/$lang'
   id:
     | '__root__'
     | '/resume/'
-    | '/resume/$lang/$profile'
-    | '/resume/$lang/about'
-    | '/resume/$lang/contact'
-    | '/resume/$lang/services'
-    | '/resume/$lang/shop'
+    | '/resume/$lang/$page'
     | '/resume/api/resume-chat'
     | '/resume/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   ResumeIndexRoute: typeof ResumeIndexRoute
-  ResumeLangProfileRoute: typeof ResumeLangProfileRoute
-  ResumeLangAboutRoute: typeof ResumeLangAboutRoute
-  ResumeLangContactRoute: typeof ResumeLangContactRoute
-  ResumeLangServicesRoute: typeof ResumeLangServicesRoute
-  ResumeLangShopRoute: typeof ResumeLangShopRoute
+  ResumeLangPageRoute: typeof ResumeLangPageRoute
   ResumeApiResumeChatRoute: typeof ResumeApiResumeChatRoute
   ResumeLangIndexRoute: typeof ResumeLangIndexRoute
 }
@@ -150,39 +98,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumeLangIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resume/$lang/$profile': {
-      id: '/resume/$lang/$profile'
-      path: '/resume/$lang/$profile'
-      fullPath: '/resume/$lang/$profile'
-      preLoaderRoute: typeof ResumeLangProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resume/$lang/about': {
-      id: '/resume/$lang/about'
-      path: '/resume/$lang/about'
-      fullPath: '/resume/$lang/about'
-      preLoaderRoute: typeof ResumeLangAboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resume/$lang/contact': {
-      id: '/resume/$lang/contact'
-      path: '/resume/$lang/contact'
-      fullPath: '/resume/$lang/contact'
-      preLoaderRoute: typeof ResumeLangContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resume/$lang/services': {
-      id: '/resume/$lang/services'
-      path: '/resume/$lang/services'
-      fullPath: '/resume/$lang/services'
-      preLoaderRoute: typeof ResumeLangServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resume/$lang/shop': {
-      id: '/resume/$lang/shop'
-      path: '/resume/$lang/shop'
-      fullPath: '/resume/$lang/shop'
-      preLoaderRoute: typeof ResumeLangShopRouteImport
+    '/resume/$lang/$page': {
+      id: '/resume/$lang/$page'
+      path: '/resume/$lang/$page'
+      fullPath: '/resume/$lang/$page'
+      preLoaderRoute: typeof ResumeLangPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resume/api/resume-chat': {
@@ -197,11 +117,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   ResumeIndexRoute: ResumeIndexRoute,
-  ResumeLangProfileRoute: ResumeLangProfileRoute,
-  ResumeLangAboutRoute: ResumeLangAboutRoute,
-  ResumeLangContactRoute: ResumeLangContactRoute,
-  ResumeLangServicesRoute: ResumeLangServicesRoute,
-  ResumeLangShopRoute: ResumeLangShopRoute,
+  ResumeLangPageRoute: ResumeLangPageRoute,
   ResumeApiResumeChatRoute: ResumeApiResumeChatRoute,
   ResumeLangIndexRoute: ResumeLangIndexRoute,
 }

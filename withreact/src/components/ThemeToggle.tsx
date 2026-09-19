@@ -1,6 +1,6 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useLangSafe } from "../lib/lang";
+import { useLang } from "../lib/lang";
 
 type Theme = "dark" | "light";
 
@@ -11,7 +11,7 @@ function applyTheme(theme: Theme) {
 }
 
 export default function ThemeToggle() {
-	const { t } = useLangSafe();
+	const { t } = useLang();
 	const [theme, setTheme] = useState<Theme>("dark");
 
 	useEffect(() => {

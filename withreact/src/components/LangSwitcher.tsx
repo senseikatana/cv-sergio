@@ -1,9 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { langs } from "../data/resume";
-import { useLangSafe } from "../lib/lang";
+import { useLang } from "../lib/lang";
 
 export default function LangSwitcher() {
-	const { lang } = useLangSafe();
+	const { lang } = useLang();
 	const pathname = useRouterState({
 		select: (state) => state.location.pathname,
 	});

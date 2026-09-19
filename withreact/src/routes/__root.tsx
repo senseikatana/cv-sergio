@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { meta } from "../data/resume";
-import { useLangSafe } from "../lib/lang";
+import { useLang } from "../lib/lang";
 import { useRevealObserver } from "../lib/reveal";
 import appCss from "../styles.css?url";
 
@@ -44,7 +44,7 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: ReactNode }) {
-	const { htmlLang, t } = useLangSafe();
+	const { htmlLang, t } = useLang();
 
 	useRevealObserver();
 
