@@ -44,7 +44,7 @@ Astro y React, `app/` en Nuxt):
 
 ```
 ├── components/   Header, Footer, LangSwitcher, ThemeToggle (+ extras propios del stack)
-├── data/         resume.ts — fuente única del CV (ES/CA/EN)
+├── data/         resume.ts + brand.json + projects.json (fuente única del proyecto)
 ├── layouts/      ResumeLayout.astro · default.vue · __root.tsx (según el framework)
 ├── pages/ routes/  resume/{index, [lang]/index, [lang]/[page]} (según el framework)
 ├── styles        global.css · main.css · styles.css
@@ -56,20 +56,22 @@ en React, etc.).
 
 ## Contenido
 
-Cada proyecto tiene su propia fuente única de verdad con el mismo shape y el mismo contenido:
+Cada proyecto mantiene su propia carpeta `data/` como fuente única de verdad, con el mismo
+shape y el mismo contenido:
 
-- Astro: `withastro/src/data/resume.ts`
-- Nuxt: `withnuxt/app/data/resume.ts`
-- React: `withreact/src/data/resume.ts`
+- `resume.ts` — CV, perfiles, servicios y UI (ES/CA/EN)
+- `brand.json` — paleta de marca Senseikatana (v1, v2 extraídas de los PDFs; v3 vigente con
+  los tokens OKLCH que usan los tres stacks)
+- `projects.json` — boceto (`draft`) de proyectos extraído de los perfiles antiguos,
+  no publicado en el CV actual
+
+Rutas:
+
+- Astro: `withastro/src/data/`
+- Nuxt: `withnuxt/app/data/`
+- React: `withreact/src/data/`
 
 El PDF descargable vive en `public/resume/cv/sergio-jurado.pdf` en cada proyecto.
-
-### `data/` compartido (raíz)
-
-- `data/brand.json` — paleta de marca Senseikatana (v1, v2 extraídas de los PDFs; v3 vigente
-  con los tokens OKLCH que usan los tres stacks).
-- `data/projects.json` — boceto (`draft`) de proyectos extraído de los perfiles antiguos,
-  no publicado en el CV actual.
 
 ## Deploy (Cloudflare, apex → `/resume/*`)
 
