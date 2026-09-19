@@ -6,6 +6,10 @@ node_modules/
 .astro/
 *.log
 
+# Build output
+dist/
+.output/
+
 # Local env files
 .env
 .env.*
