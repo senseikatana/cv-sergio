@@ -8,6 +8,8 @@
     "preview": "bunx astro preview"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/jetbrains-mono": "^5.2.5",
     "astro": "^5.12.0"
   }
 }

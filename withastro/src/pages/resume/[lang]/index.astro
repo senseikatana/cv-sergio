@@ -1,77 +1,258 @@
 ---
 import ResumeLayout from '../../../layouts/ResumeLayout.astro';
-import { meta, ui, profiles } from '../../../data/resume';
+import { meta, ui, resume, profiles, sections, profileIds, type Lang } from '../../../data/resume';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'ca' } }, { params: { lang: 'en' } }];
 }
 
-const { lang } = Astro.params as { lang: 'es' | 'ca' | 'en' };
+const { lang } = Astro.params as { lang: Lang };
 const t = ui[lang];
-const profileIds = ['logistica', 'fullstack', 'generico'] as const;
+const r = resume[lang];
+const tabs = sections[lang];
+const whatsappUrl = `https://wa.me/${meta.whatsapp}?text=${encodeURIComponent(t.whatsappPrefill)}`;
 ---
-<ResumeLayout title={t.subtitle} lang={lang}>
+
+<ResumeLayout title={r.title} lang={lang} active="cv">
   <section class="hero">
-    <p class="greeting">{t.greeting}</p>
-    <h1>{t.subtitle}</h1>
-    <p class="roles">{t.roles}</p>
-    <p class="muted">
-      <span class="pill">{t.location}</span>
-      <span class="pill">{t.teaCert}</span>
-      <span class="pill">{t.availability}</span>
-    </p>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">senseikatana.com/resume/{lang}</p>
+        <h1 class="hero-title">{t.heroGreeting} <em>{r.name}</em></h1>
+        <p class="hero-role">{r.title}</p>
+        <p class="hero-intro">{t.heroIntro}</p>
+
+        <div class="hero-contact">
+          <span><svg class="icon"><use href="#i-map-pin" /></svg>{r.location}</span>
+          <a href={`tel:${meta.phone.replace(/\s/g, '')}`}><svg class="icon"><use href="#i-phone" /></svg>{meta.phone}</a>
+          <a href={`mailto:${meta.email}`}><svg class="icon"><use href="#i-mail" /></svg>{meta.email}</a>
+          <a href={meta.linkedin} target="_blank" rel="noopener"><svg class="icon"><use href="#i-linkedin" /></svg>LinkedIn</a>
+          <a href={meta.github} target="_blank" rel="noopener"><svg class="icon"><use href="#i-github" /></svg>GitHub</a>
+        </div>
+
+        {r.note && <p class="hero-note">{r.note}</p>}
+
+        <div class="hero-actions">
+          <a href={meta.pdfUrl} download="CV_sergio-jurado.pdf" class="btn btn-primary">
+            <svg class="icon icon-lg"><use href="#i-download" /></svg>{t.downloadPdf}
+          </a>
+          <a href="#perfiles" class="btn btn-outline">{t.viewProfiles}</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <img
+          src="/resume/cv/sergio-jurado.jpg"
+          alt={`Retrato de ${r.name}`}
+          width="1154"
+          height="1732"
+          fetchpriority="high"
+          class="hero-photo"
+        />
+      </div>
+    </div>
   </section>
 
-  <hr />
-
-  <h2>Sobre mí</h2>
-  {t.bio.map((p: string) => <p>{p}</p>)}
-  <p><a href={`mailto:${meta.email}`}>{meta.email}</a> · <a href={`tel:${meta.phone}`}>{meta.phone}</a></p>
-
-  <hr />
-
-  <h2>{t.whatIDo}</h2>
-  <div class="card-grid">
-    {t.servicesList.map((s: any) => (
-      <article class="card">
-        <h3>{s.t}</h3>
-        <p class="muted">{s.d}</p>
-      </article>
-    ))}
-  </div>
-
-  <hr />
-
-  <h2>{t.choose}</h2>
-  <div class="card-grid">
-    {profileIds.map((id) => {
-      const p = profiles[id][lang];
-      const href = `/resume/${lang}/${id}/`;
-      return (
-        <a href={href} class="card profile-card">
-          <h3>{p.title}</h3>
-          <p class="muted">{p.desc}</p>
-          <span class="arrow">{t.view}</span>
+  <nav class="section-nav" aria-label={t.nav.cv}>
+    <div class="container section-nav-inner">
+      {tabs.map((section) => (
+        <a href={`#${section.id}`} class="section-chip" data-spy={section.id}>
+          <span class="num">{section.label}</span>
+          <svg class="icon"><use href={`#i-${section.icon}`} /></svg>
+          {section.title}
         </a>
+      ))}
+    </div>
+  </nav>
+
+  <section id="perfil" class="section section-alt">
+    <div class="container narrow reveal">
+      <h2 class="section-title">
+        <svg class="icon icon-xl"><use href="#i-user" /></svg>
+        {t.sectionProfile}
+      </h2>
+      <p class="lead">{r.summary}</p>
+    </div>
+  </section>
+
+  <section id="experiencia" class="section">
+    <div class="container narrow">
+      <h2 class="section-title reveal">
+        <svg class="icon icon-xl"><use href="#i-briefcase" /></svg>
+        {t.sectionExperience}
+      </h2>
+      <p class="section-sub reveal">{t.experienceSubtitle}</p>
+
+      <div class="timeline">
+        {r.experience.map((exp) => (
+          <article class="timeline-item reveal">
+            <span class="timeline-dot" />
+            <div class="entry">
+              <div class="entry-head">
+                <h3 class="entry-role">{exp.role}</h3>
+                <span class="entry-period">{exp.period}</span>
+              </div>
+              <p class="entry-company">{exp.company}</p>
+              <p class="entry-desc">{exp.description}</p>
+              <ul class="entry-list">
+                {exp.highlights.map((item) => (
+                  <li>
+                    <svg class="icon accent-teal mt"><use href="#i-check" /></svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="formacion" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <svg class="icon icon-xl"><use href="#i-graduation-cap" /></svg>
+        {t.sectionEducation}
+      </h2>
+
+      <div class="card-grid">
+        {r.education.map((edu) => (
+          <div class="card reveal">
+            <div class="entry-head">
+              <h3 class="card-title">{edu.degree}</h3>
+              <span class="card-period">{edu.period}</span>
+            </div>
+            <p class="card-company">{edu.institution}</p>
+            {edu.note && <p class="card-note">{edu.note}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container narrow">
+      <h2 class="section-title reveal">
+        <svg class="icon icon-xl"><use href="#i-sparkles" /></svg>
+        {t.sectionSkills}
+      </h2>
+
+      <div class="skills-grid">
+        <div class="reveal">
+          <h3 class="skills-head"><svg class="icon accent-rose"><use href="#i-heart" /></svg>{t.softSkills}</h3>
+          <ul class="skills-list">
+            {r.softSkills.map((skill) => (
+              <li><svg class="icon accent-rose mt"><use href="#i-heart" /></svg><span>{skill}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="reveal">
+          <h3 class="skills-head"><svg class="icon accent-sky"><use href="#i-wrench" /></svg>{t.hardSkills}</h3>
+          <ul class="skills-list">
+            {r.hardSkills.map((skill) => (
+              <li><svg class="icon accent-sky mt"><use href="#i-wrench" /></svg><span>{skill}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="skills-head reveal">
+        <svg class="icon accent-sky"><use href="#i-languages" /></svg>{t.languages}
+      </h3>
+      <div class="lang-chips reveal">
+        {r.languages.map((language) => (
+          <div class="lang-chip">
+            <span class="lang-name">{language.name}</span>
+            <span class="lang-level">· {language.level}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="extra" class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title reveal">
+        <svg class="icon icon-xl"><use href="#i-info" /></svg>
+        {t.sectionAvailability}
+      </h2>
+      <ul class="extra-list reveal">
+        {r.additional.map((item) => (
+          <li><svg class="icon accent-emerald mt-lg"><use href="#i-circle-check" /></svg><span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="perfiles" class="section profiles-section">
+    <div class="container">
+      <h2 class="section-title reveal">
+        <svg class="icon icon-xl"><use href="#i-briefcase" /></svg>
+        {t.profilesTitle}
+      </h2>
+      <p class="section-sub reveal">{t.profilesSubtitle}</p>
+
+      <div class="card-grid">
+        {profileIds.map((id) => (
+          <a href={`/resume/${lang}/${id}/`} class="card profile-card reveal">
+            <h3 class="card-title">{profiles[id][lang].title}</h3>
+            <p class="entry-desc">{profiles[id][lang].description}</p>
+            <span class="arrow">{t.viewProfile} <svg class="icon"><use href="#i-arrow-right" /></svg></span>
+          </a>
+        ))}
+      </div>
+
+      <div class="cta-panel reveal" style="margin-top:3rem">
+        <p class="cta-text">{t.ctaText}</p>
+        <div class="cta-actions">
+          <a href={meta.pdfUrl} download="CV_sergio-jurado.pdf" class="btn btn-primary">
+            <svg class="icon icon-lg"><use href="#i-download" /></svg>{t.downloadPdf}
+          </a>
+          <a href={`mailto:${meta.email}`} class="btn btn-outline">
+            <svg class="icon icon-lg"><use href="#i-mail" /></svg>{t.sendEmail}
+          </a>
+          <a href={whatsappUrl} target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg class="icon icon-lg"><use href="#i-message-circle" /></svg>{t.whatsappCta}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.section-chip[data-spy]'));
+      if (!chips.length || !('IntersectionObserver' in window)) return;
+
+      var byId = {};
+      chips.forEach(function (chip) {
+        byId[chip.getAttribute('data-spy')] = chip;
+      });
+
+      var visible = {};
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            visible[entry.target.id] = entry.isIntersecting;
+          });
+          var active = null;
+          Object.keys(byId).forEach(function (id) {
+            if (visible[id]) active = id;
+          });
+          chips.forEach(function (chip) {
+            chip.removeAttribute('aria-current');
+          });
+          var current = byId[active];
+          if (current) current.setAttribute('aria-current', 'true');
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
       );
-    })}
-  </div>
 
-  <hr />
-
-  <h2>{t.links}</h2>
-  <p>
-    <a href={meta.linkedin} target="_blank" rel="noopener">LinkedIn</a> ·
-    <a href={meta.github} target="_blank" rel="noopener">GitHub</a> ·
-    <a href={`/resume/${lang}/shop/`}>{t.shopTitle}</a> ·
-    <a href={`/resume/${lang}/contact/`}>{t.contact}</a>
-  </p>
+      Object.keys(byId).forEach(function (id) {
+        var section = document.getElementById(id);
+        if (section) io.observe(section);
+      });
+    })();
+  </script>
 </ResumeLayout>
-
-<style>
-  .hero { text-align: center; padding: 2rem 0; }
-  .greeting { font-size: 1.4rem; color: var(--muted); margin-bottom: .25rem; }
-  .roles { font-family: var(--font-mono); color: var(--accent); font-size: 1.05rem; margin: .5rem 0; }
-  .profile-card { text-decoration: none; color: inherit; display: block; }
-  .arrow { color: var(--accent); font-weight: 700; font-size: .9rem; display: block; margin-top: .5rem; }
-</style>

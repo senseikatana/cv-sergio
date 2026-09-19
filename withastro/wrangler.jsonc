@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cv-sergio-astro",
+  "compatibility_date": "2025-09-02",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "senseikatana.com/resume/*",
+      "zone_name": "senseikatana.com"
+    }
+  ]
+}
