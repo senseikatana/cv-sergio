@@ -1,15 +1,19 @@
 {
   "name": "cv-sergio-astro",
   "type": "module",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "scripts": {
     "dev": "bunx astro dev --host",
     "build": "bunx astro build",
-    "preview": "bunx astro preview"
+    "preview": "bunx astro preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
     "astro": "^5.12.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
   }
 }

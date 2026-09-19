@@ -1,0 +1,26 @@
+---
+export interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button id="theme-toggle" class="icon-btn" type="button" aria-label={label}>
+  <svg class="icon icon-sun"><use href="#i-sun" /></svg>
+  <svg class="icon icon-moon"><use href="#i-moon" /></svg>
+</button>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var toggle = document.getElementById('theme-toggle');
+    toggle?.addEventListener('click', function () {
+      var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('cv-theme', next);
+      } catch (e) {}
+    });
+  })();
+</script>

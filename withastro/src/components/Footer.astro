@@ -1,0 +1,21 @@
+---
+import { meta, ui, type Lang } from '../data/resume';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span class="footer-text">© {new Date().getFullYear()} {meta.name} · {t.footerPartOf}</span>
+    <div class="footer-links">
+      <a href={`mailto:${meta.email}`}>Email</a>
+      <a href={meta.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={meta.github} target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>

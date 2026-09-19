@@ -7,16 +7,23 @@ cliente más allá del toggle de tema, el scroll-spy y el reveal on scroll (todo
 
 ```
 src/
+├── components/                    ← Header, Footer, LangSwitcher, ThemeToggle
+│   ├── Header.astro
+│   ├── Footer.astro
+│   ├── LangSwitcher.astro
+│   └── ThemeToggle.astro
 ├── data/resume.ts                 ← fuente única: CV, perfiles, servicios y UI (ES/CA/EN)
-├── layouts/ResumeLayout.astro     ← HTML base, design system, header/footer, SEO
-└── pages/resume/
-    ├── index.astro                ← redirige a /resume/es/
-    └── [lang]/
-        ├── index.astro            ← CV con pestañas + perfiles + CTA
-        └── [page].astro           ← services, contact, perfiles (about/shop redirigen)
+├── layouts/ResumeLayout.astro     ← HTML base, SEO, skip-link, símbolos SVG y reveal
+├── pages/resume/
+│   ├── index.astro                ← redirige a /resume/es/
+│   └── [lang]/
+│       ├── index.astro            ← CV con pestañas + perfiles + CTA
+│       └── [page].astro           ← services, contact, perfiles (about/shop redirigen)
+└── styles/global.css              ← tokens, tipografía, componentes y print
 public/resume/
 ├── cv/sergio-jurado.{jpg,pdf}
 └── favicon.svg
+tests/resume.test.ts               ← mismo test que Nuxt y React (11 checks de datos)
 ```
 
 Todos los assets se generan bajo `/resume/` (`build.assets` en `astro.config.mjs`) porque el

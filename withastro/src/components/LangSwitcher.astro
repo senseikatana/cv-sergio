@@ -1,0 +1,20 @@
+---
+import { langs, type Lang } from '../data/resume';
+
+export interface Props {
+  lang: Lang;
+  path?: string;
+}
+
+const { lang, path = '' } = Astro.props;
+---
+
+<div class="lang-switcher" role="group" aria-label="Idioma">
+  {langs.map((l) => (
+    <a
+      href={`/resume/${l.code}/${path}`}
+      aria-current={l.code === lang ? 'true' : undefined}
+      hreflang={l.code}
+    >{l.label}</a>
+  ))}
+</div>

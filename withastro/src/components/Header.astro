@@ -1,0 +1,38 @@
+---
+import { meta, ui, type Lang } from '../data/resume';
+import LangSwitcher from './LangSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+export interface Props {
+  lang: Lang;
+  path?: string;
+  active?: 'cv' | 'services' | 'contact' | 'profile';
+}
+
+const { lang, path = '', active = 'cv' } = Astro.props;
+const t = ui[lang];
+const base = `/resume/${lang}/`;
+const navItems = [
+  { key: 'cv', href: base, label: t.nav.cv },
+  { key: 'services', href: `${base}services/`, label: t.nav.services },
+  { key: 'contact', href: `${base}contact/`, label: t.nav.contact },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={base} class="logo">SJ <span>senseikatana/resume</span></a>
+    <nav class="site-nav" aria-label="Principal">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={active === item.key ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-tools">
+      <LangSwitcher lang={lang} path={path} />
+      <a href={meta.github} target="_blank" rel="noopener" class="icon-btn header-social" aria-label="GitHub">
+        <svg class="icon"><use href="#i-github" /></svg>
+      </a>
+      <ThemeToggle label={t.themeToggle} />
+    </div>
+  </div>
+</header>
