@@ -1,4 +1,4 @@
-import { langs, meta } from '~~/data/resume'
+import { langs, meta } from '~/data/resume'
 
 export function useResumeSeo(title: string, path = '') {
   const { lang } = useLang()

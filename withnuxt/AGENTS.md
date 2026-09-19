@@ -18,9 +18,17 @@ CV digital de Sergio Jurado Casado, parte de senseikatana.com. Se despliega en
 - `about` y `shop` redirigen al CV por compatibilidad
 - El CV **nunca** va en la raíz del dominio
 
+### Estructura (espejo de los otros stacks)
+
+- `app/components/{Header,Footer,LangSwitcher,ThemeToggle}.vue` — mismos nombres que en
+  Astro (`src/components/*.astro`) y React (`src/components/*.tsx`)
+- `app/composables/{useLang,useResumeSeo,useReveal}.ts` — equivalente a `src/lib/*` de React
+- `app/data/resume.ts` — única fuente de verdad; en Astro y React vive en `src/data/resume.ts`
+- `tests/resume.test.ts` — mismo test que los otros dos stacks (solo cambia el import)
+
 ### Data Layer
 
-- `data/resume.ts` es la única fuente de verdad: CV, perfiles, servicios, secciones y UI
+- `app/data/resume.ts` es la única fuente de verdad: CV, perfiles, servicios, secciones y UI
   en ES/CA/EN. Debe mantener el mismo shape que `withastro/src/data/resume.ts` y
   `withreact/src/data/resume.ts`
 - Assets públicos bajo `public/resume/` (PDF, foto, favicon) porque el Worker solo
@@ -61,7 +69,8 @@ CV digital de Sergio Jurado Casado, parte de senseikatana.com. Se despliega en
 
 - ❌ No volver a meter blog, tienda, Stripe, Prisma ni i18n: este proyecto es solo el CV
 - ❌ No poner el CV en `/` ni generar un `index.html` raíz
-- ❌ No usar `~/data/*` — usar `~~/data/*`
+- ❌ No usar `~~/data/*` — la data vive en `app/data/` y se importa con `~/data/*`
+- ❌ No renombrar los componentes compartidos (`Header`, `Footer`, `LangSwitcher`, `ThemeToggle`)
 - ❌ No usar `sensei-*` como prefijo de color
 - ❌ No añadir atribución de IA ni "Co-Authored-By" en commits
 

@@ -13,18 +13,18 @@ estático (`nuxt generate`) para desplegarse en `senseikatana.com/resume/*`.
 ## Estructura
 
 ```
-data/resume.ts                     ← fuente única: CV, perfiles, servicios y UI (ES/CA/EN)
 app/
 ├── assets/css/main.css            ← tokens de color/fuente, reveal y print
 ├── components/
-│   ├── AppHeader.vue              ← nav + idioma + tema + asistente
-│   ├── AppFooter.vue
-│   ├── AppLangSwitcher.vue
-│   └── AppThemeToggle.vue
+│   ├── Header.vue                 ← nav + idioma + tema
+│   ├── Footer.vue
+│   ├── LangSwitcher.vue
+│   └── ThemeToggle.vue
 ├── composables/
 │   ├── useLang.ts                 ← idioma desde [lang] + helpers de ruta
 │   ├── useResumeSeo.ts            ← canonical + hreflang
 │   └── useReveal.ts               ← IntersectionObserver de .reveal
+├── data/resume.ts                 ← fuente única: CV, perfiles, servicios y UI (ES/CA/EN)
 ├── layouts/default.vue
 └── pages/resume/
     ├── index.vue                  ← redirige a /resume/es/
@@ -33,8 +33,8 @@ app/
         └── [page].vue             ← services, contact, perfiles (about/shop redirigen)
 public/resume/
 ├── cv/sergio-jurado.{jpg,pdf}
-├── brand/
 └── favicon.svg
+tests/resume.test.ts               ← mismo test que Astro y React (11 checks de datos)
 ```
 
 Los assets de build se generan bajo `/resume/_nuxt/` (`app.buildAssetsDir`) porque el Worker

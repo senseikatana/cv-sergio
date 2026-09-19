@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meta } from '~~/data/resume'
+import { meta } from '~/data/resume'
 
 const { lang, t } = useLang()
 const route = useRoute()
@@ -43,7 +43,7 @@ function isActive(path: string) {
       </nav>
 
       <div class="ml-auto flex items-center gap-2">
-        <AppLangSwitcher />
+        <LangSwitcher />
         <a
           :href="meta.github"
           target="_blank"
@@ -53,7 +53,7 @@ function isActive(path: string) {
         >
           <UIcon name="i-simple-icons-github" class="size-4" />
         </a>
-        <AppThemeToggle />
+        <ThemeToggle />
       </div>
     </div>
   </header>

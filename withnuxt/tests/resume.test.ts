@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { meta, resume, profiles, services, sections, ui } from '../data/resume'
+import { meta, resume, profiles, services, sections, ui } from '../app/data/resume'
 
 const langs = ['es', 'ca', 'en'] as const
 

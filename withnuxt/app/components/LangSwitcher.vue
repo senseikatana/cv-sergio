@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { langs } from '~~/data/resume'
+import { langs } from '~/data/resume'
 
 const { lang } = useLang()
 const route = useRoute()

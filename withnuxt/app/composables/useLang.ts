@@ -1,4 +1,4 @@
-import { langs, resume, ui, type Lang } from '~~/data/resume'
+import { langs, resume, ui, type Lang } from '~/data/resume'
 
 export function useLang() {
   const route = useRoute()

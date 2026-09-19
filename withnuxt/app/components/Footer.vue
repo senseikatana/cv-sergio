@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meta } from '~~/data/resume'
+import { meta } from '~/data/resume'
 
 const { t } = useLang()
 const year = new Date().getFullYear()

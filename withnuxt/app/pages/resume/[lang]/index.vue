@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meta, profiles, profileIds, sections } from '~~/data/resume'
+import { meta, profiles, profileIds, sections } from '~/data/resume'
 
 const { lang, t, r } = useLang()
 

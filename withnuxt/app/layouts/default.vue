@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meta } from '~~/data/resume'
+import { meta } from '~/data/resume'
 
 const { t, htmlLang } = useLang()
 
@@ -45,10 +45,10 @@ useHead({
 <template>
   <div class="flex min-h-screen flex-col">
     <a href="#main" class="skip-link">{{ t.skipToContent }}</a>
-    <AppHeader />
+    <Header />
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <AppFooter />
+    <Footer />
   </div>
 </template>

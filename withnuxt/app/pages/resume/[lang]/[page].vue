@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meta, profiles, services, type ProfileId } from '~~/data/resume'
+import { meta, profiles, services, type ProfileId } from '~/data/resume'
 
 const route = useRoute()
 const { lang, t } = useLang()
