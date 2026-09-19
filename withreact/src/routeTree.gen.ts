@@ -9,181 +9,211 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as ApiResumeChatRouteImport } from './routes/api.resume-chat'
-import { Route as DemoApolloClientRouteImport } from './routes/demo.apollo-client'
-import { Route as DemoI18nRouteImport } from './routes/demo.i18n'
-import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
-import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
+import { Route as ResumeIndexRouteImport } from './routes/resume/index'
+import { Route as ResumeLangIndexRouteImport } from './routes/resume/$lang/index'
+import { Route as ResumeLangProfileRouteImport } from './routes/resume/$lang/$profile'
+import { Route as ResumeLangAboutRouteImport } from './routes/resume/$lang/about'
+import { Route as ResumeLangContactRouteImport } from './routes/resume/$lang/contact'
+import { Route as ResumeLangServicesRouteImport } from './routes/resume/$lang/services'
+import { Route as ResumeLangShopRouteImport } from './routes/resume/$lang/shop'
+import { Route as ResumeApiResumeChatRouteImport } from './routes/resume/api/resume-chat'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ResumeIndexRoute = ResumeIndexRouteImport.update({
+  id: '/resume/',
+  path: '/resume/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const ResumeLangIndexRoute = ResumeLangIndexRouteImport.update({
+  id: '/resume/$lang/',
+  path: '/resume/$lang/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiResumeChatRoute = ApiResumeChatRouteImport.update({
-  id: '/api/resume-chat',
-  path: '/api/resume-chat',
+const ResumeLangProfileRoute = ResumeLangProfileRouteImport.update({
+  id: '/resume/$lang/$profile',
+  path: '/resume/$lang/$profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoApolloClientRoute = DemoApolloClientRouteImport.update({
-  id: '/demo/apollo-client',
-  path: '/demo/apollo-client',
+const ResumeLangAboutRoute = ResumeLangAboutRouteImport.update({
+  id: '/resume/$lang/about',
+  path: '/resume/$lang/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoI18nRoute = DemoI18nRouteImport.update({
-  id: '/demo/i18n',
-  path: '/demo/i18n',
+const ResumeLangContactRoute = ResumeLangContactRouteImport.update({
+  id: '/resume/$lang/contact',
+  path: '/resume/$lang/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoPrismaRoute = DemoPrismaRouteImport.update({
-  id: '/demo/prisma',
-  path: '/demo/prisma',
+const ResumeLangServicesRoute = ResumeLangServicesRouteImport.update({
+  id: '/resume/$lang/services',
+  path: '/resume/$lang/services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
+const ResumeLangShopRoute = ResumeLangShopRouteImport.update({
+  id: '/resume/$lang/shop',
+  path: '/resume/$lang/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResumeApiResumeChatRoute = ResumeApiResumeChatRouteImport.update({
+  id: '/resume/api/resume-chat',
+  path: '/resume/api/resume-chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/api/resume-chat': typeof ApiResumeChatRoute
-  '/demo/apollo-client': typeof DemoApolloClientRoute
-  '/demo/i18n': typeof DemoI18nRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/resume/': typeof ResumeIndexRoute
+  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
+  '/resume/$lang/about': typeof ResumeLangAboutRoute
+  '/resume/$lang/contact': typeof ResumeLangContactRoute
+  '/resume/$lang/services': typeof ResumeLangServicesRoute
+  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
+  '/resume/$lang/': typeof ResumeLangIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/api/resume-chat': typeof ApiResumeChatRoute
-  '/demo/apollo-client': typeof DemoApolloClientRoute
-  '/demo/i18n': typeof DemoI18nRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/resume': typeof ResumeIndexRoute
+  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
+  '/resume/$lang/about': typeof ResumeLangAboutRoute
+  '/resume/$lang/contact': typeof ResumeLangContactRoute
+  '/resume/$lang/services': typeof ResumeLangServicesRoute
+  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
+  '/resume/$lang': typeof ResumeLangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/api/resume-chat': typeof ApiResumeChatRoute
-  '/demo/apollo-client': typeof DemoApolloClientRoute
-  '/demo/i18n': typeof DemoI18nRoute
-  '/demo/prisma': typeof DemoPrismaRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/resume/': typeof ResumeIndexRoute
+  '/resume/$lang/$profile': typeof ResumeLangProfileRoute
+  '/resume/$lang/about': typeof ResumeLangAboutRoute
+  '/resume/$lang/contact': typeof ResumeLangContactRoute
+  '/resume/$lang/services': typeof ResumeLangServicesRoute
+  '/resume/$lang/shop': typeof ResumeLangShopRoute
+  '/resume/api/resume-chat': typeof ResumeApiResumeChatRoute
+  '/resume/$lang/': typeof ResumeLangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/about'
-    | '/api/resume-chat'
-    | '/demo/apollo-client'
-    | '/demo/i18n'
-    | '/demo/prisma'
-    | '/demo/tanstack-query'
+    | '/resume/'
+    | '/resume/$lang/$profile'
+    | '/resume/$lang/about'
+    | '/resume/$lang/contact'
+    | '/resume/$lang/services'
+    | '/resume/$lang/shop'
+    | '/resume/api/resume-chat'
+    | '/resume/$lang/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/about'
-    | '/api/resume-chat'
-    | '/demo/apollo-client'
-    | '/demo/i18n'
-    | '/demo/prisma'
-    | '/demo/tanstack-query'
+    | '/resume'
+    | '/resume/$lang/$profile'
+    | '/resume/$lang/about'
+    | '/resume/$lang/contact'
+    | '/resume/$lang/services'
+    | '/resume/$lang/shop'
+    | '/resume/api/resume-chat'
+    | '/resume/$lang'
   id:
     | '__root__'
-    | '/'
-    | '/about'
-    | '/api/resume-chat'
-    | '/demo/apollo-client'
-    | '/demo/i18n'
-    | '/demo/prisma'
-    | '/demo/tanstack-query'
+    | '/resume/'
+    | '/resume/$lang/$profile'
+    | '/resume/$lang/about'
+    | '/resume/$lang/contact'
+    | '/resume/$lang/services'
+    | '/resume/$lang/shop'
+    | '/resume/api/resume-chat'
+    | '/resume/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  ApiResumeChatRoute: typeof ApiResumeChatRoute
-  DemoApolloClientRoute: typeof DemoApolloClientRoute
-  DemoI18nRoute: typeof DemoI18nRoute
-  DemoPrismaRoute: typeof DemoPrismaRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ResumeIndexRoute: typeof ResumeIndexRoute
+  ResumeLangProfileRoute: typeof ResumeLangProfileRoute
+  ResumeLangAboutRoute: typeof ResumeLangAboutRoute
+  ResumeLangContactRoute: typeof ResumeLangContactRoute
+  ResumeLangServicesRoute: typeof ResumeLangServicesRoute
+  ResumeLangShopRoute: typeof ResumeLangShopRoute
+  ResumeApiResumeChatRoute: typeof ResumeApiResumeChatRoute
+  ResumeLangIndexRoute: typeof ResumeLangIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/resume/': {
+      id: '/resume/'
+      path: '/resume'
+      fullPath: '/resume/'
+      preLoaderRoute: typeof ResumeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/resume/$lang/': {
+      id: '/resume/$lang/'
+      path: '/resume/$lang'
+      fullPath: '/resume/$lang/'
+      preLoaderRoute: typeof ResumeLangIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/resume-chat': {
-      id: '/api/resume-chat'
-      path: '/api/resume-chat'
-      fullPath: '/api/resume-chat'
-      preLoaderRoute: typeof ApiResumeChatRouteImport
+    '/resume/$lang/$profile': {
+      id: '/resume/$lang/$profile'
+      path: '/resume/$lang/$profile'
+      fullPath: '/resume/$lang/$profile'
+      preLoaderRoute: typeof ResumeLangProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/apollo-client': {
-      id: '/demo/apollo-client'
-      path: '/demo/apollo-client'
-      fullPath: '/demo/apollo-client'
-      preLoaderRoute: typeof DemoApolloClientRouteImport
+    '/resume/$lang/about': {
+      id: '/resume/$lang/about'
+      path: '/resume/$lang/about'
+      fullPath: '/resume/$lang/about'
+      preLoaderRoute: typeof ResumeLangAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/i18n': {
-      id: '/demo/i18n'
-      path: '/demo/i18n'
-      fullPath: '/demo/i18n'
-      preLoaderRoute: typeof DemoI18nRouteImport
+    '/resume/$lang/contact': {
+      id: '/resume/$lang/contact'
+      path: '/resume/$lang/contact'
+      fullPath: '/resume/$lang/contact'
+      preLoaderRoute: typeof ResumeLangContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/prisma': {
-      id: '/demo/prisma'
-      path: '/demo/prisma'
-      fullPath: '/demo/prisma'
-      preLoaderRoute: typeof DemoPrismaRouteImport
+    '/resume/$lang/services': {
+      id: '/resume/$lang/services'
+      path: '/resume/$lang/services'
+      fullPath: '/resume/$lang/services'
+      preLoaderRoute: typeof ResumeLangServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryRouteImport
+    '/resume/$lang/shop': {
+      id: '/resume/$lang/shop'
+      path: '/resume/$lang/shop'
+      fullPath: '/resume/$lang/shop'
+      preLoaderRoute: typeof ResumeLangShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resume/api/resume-chat': {
+      id: '/resume/api/resume-chat'
+      path: '/resume/api/resume-chat'
+      fullPath: '/resume/api/resume-chat'
+      preLoaderRoute: typeof ResumeApiResumeChatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  ApiResumeChatRoute: ApiResumeChatRoute,
-  DemoApolloClientRoute: DemoApolloClientRoute,
-  DemoI18nRoute: DemoI18nRoute,
-  DemoPrismaRoute: DemoPrismaRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ResumeIndexRoute: ResumeIndexRoute,
+  ResumeLangProfileRoute: ResumeLangProfileRoute,
+  ResumeLangAboutRoute: ResumeLangAboutRoute,
+  ResumeLangContactRoute: ResumeLangContactRoute,
+  ResumeLangServicesRoute: ResumeLangServicesRoute,
+  ResumeLangShopRoute: ResumeLangShopRoute,
+  ResumeApiResumeChatRoute: ResumeApiResumeChatRoute,
+  ResumeLangIndexRoute: ResumeLangIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

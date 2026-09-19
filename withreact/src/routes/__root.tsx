@@ -1,86 +1,68 @@
-import {
-  HeadContent,
-  Scripts,
-  createRootRouteWithContext,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
+import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import { meta } from "../data/resume";
+import { useLangSafe } from "../lib/lang";
+import { useRevealObserver } from "../lib/reveal";
+import appCss from "../styles.css?url";
 
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('cv-theme');var mode=stored==='light'?'light':'dark';var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(mode);root.style.colorScheme=mode;}catch(e){document.documentElement.classList.add('dark');}})();`;
 
-import { getLocale } from '#/paraglide/runtime'
+const PERSON_LD = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: meta.name,
+	email: meta.email,
+	telephone: meta.phone,
+	url: `${meta.siteUrl}/resume/es/`,
+	image: `${meta.siteUrl}/resume/cv/sergio-jurado.jpg`,
+	sameAs: [meta.linkedin, meta.github],
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Cambrils",
+		addressRegion: "Tarragona",
+		addressCountry: "ES",
+	},
+});
 
-import appCss from '../styles.css?url'
+export const Route = createRootRoute({
+	head: () => ({
+		meta: [
+			{ charSet: "utf-8" },
+			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+			{ title: "Sergio Jurado Casado — CV" },
+			{ name: "theme-color", content: "#11151c" },
+		],
+		links: [
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", type: "image/svg+xml", href: "/resume/favicon.svg" },
+		],
+		scripts: [{ type: "application/ld+json", children: PERSON_LD }],
+	}),
+	shellComponent: RootDocument,
+});
 
-import type { ApolloClientIntegration } from '@apollo/client-integration-tanstack-start'
+function RootDocument({ children }: { children: ReactNode }) {
+	const { htmlLang, t } = useLangSafe();
 
-import type { QueryClient } from '@tanstack/react-query'
+	useRevealObserver();
 
-interface MyRouterContext extends ApolloClientIntegration.RouterContext {
-  queryClient: QueryClient
-}
-
-const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`
-
-export const Route = createRootRouteWithContext<MyRouterContext>()({
-  beforeLoad: async () => {
-    // Other redirect strategies are possible; see
-    // https://github.com/TanStack/router/tree/main/examples/react/i18n-paraglide#offline-redirect
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('lang', getLocale())
-    }
-  },
-
-  head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'TanStack Start Starter',
-      },
-    ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootDocument,
-})
-
-function RootDocument({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang={getLocale()} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-        <HeadContent />
-      </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
-        <Header />
-        {children}
-        <Footer />
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
-        <Scripts />
-      </body>
-    </html>
-  )
+	return (
+		<html lang={htmlLang} className="dark" suppressHydrationWarning>
+			<head>
+				<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+				<HeadContent />
+			</head>
+			<body className="font-sans antialiased">
+				<a href="#main" className="skip-link">
+					{t.skipToContent}
+				</a>
+				<Header />
+				<main id="main">{children}</main>
+				<Footer />
+				<Scripts />
+			</body>
+		</html>
+	);
 }

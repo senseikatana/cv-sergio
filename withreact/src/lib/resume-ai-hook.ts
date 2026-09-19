@@ -1,21 +1,22 @@
+import type { InferChatMessages } from "@tanstack/ai-react";
 import {
-  fetchServerSentEvents,
-  useChat,
-  createChatClientOptions,
-} from '@tanstack/ai-react'
-import type { InferChatMessages } from '@tanstack/ai-react'
+	createChatClientOptions,
+	fetchServerSentEvents,
+	useChat,
+} from "@tanstack/ai-react";
 
-// Default chat options for type inference
+const ENDPOINT = "/resume/api/resume-chat";
+
 const defaultChatOptions = createChatClientOptions({
-  connection: fetchServerSentEvents('/api/resume-chat'),
-})
+	connection: fetchServerSentEvents(ENDPOINT),
+});
 
-export type ResumeChatMessages = InferChatMessages<typeof defaultChatOptions>
+export type ResumeChatMessages = InferChatMessages<typeof defaultChatOptions>;
 
 export const useResumeChat = () => {
-  const chatOptions = createChatClientOptions({
-    connection: fetchServerSentEvents('/api/resume-chat'),
-  })
+	const chatOptions = createChatClientOptions({
+		connection: fetchServerSentEvents(ENDPOINT),
+	});
 
-  return useChat(chatOptions)
-}
+	return useChat(chatOptions);
+};
