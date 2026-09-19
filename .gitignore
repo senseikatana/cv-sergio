@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Local tool caches
+.atl/
+.astro/
+*.log
+
+# Local env files
+.env
+.env.*
+!.env.example
